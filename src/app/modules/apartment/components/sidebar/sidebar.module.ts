@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 import { SidebarComponent } from './sidebar.component';
-
-import { StoreModule } from '@ngrx/store';
-import { apartmentReducer } from '../../state/apartment.reducer';
+import { FullnameCompanyPipe } from 'src/app/modules/shared/pipes/fullname-company.pipe';
+import { SidebarDetailModule } from '../sidebar-detail/sidebar-detail.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    SidebarComponent
+    SidebarComponent,
+    FullnameCompanyPipe
   ],
   imports: [
     CommonModule,
-    StoreModule.forRoot({ apartment: apartmentReducer }),
-    HttpClientModule
+    RouterModule,
+    SidebarDetailModule
   ],
   exports: [
     SidebarComponent,

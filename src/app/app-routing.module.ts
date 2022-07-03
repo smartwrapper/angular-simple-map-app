@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./modules/apartment/apartment.module')
-      .then(mod => mod.ApartmentModule)
+    path: '',   redirectTo: '/apartment', pathMatch: 'full'
   },
   {
     path: 'apartment',

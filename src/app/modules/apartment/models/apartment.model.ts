@@ -1,6 +1,6 @@
 export class Apartment {
-    agentInfo: object;
-    records: Array<object>;
+    agentInfo: any;
+    records: Array<any>;
 
     constructor() {
       this.agentInfo = {};

@@ -1,0 +1,8 @@
+<a
+  [routerLink]="[ '/apartment/', record.propertyID ]"
+  class="list-group-item list-group-item-action py-2 ripple"
+  [ngClass]="{select:record.propertyID === selectedId}"
+  (click)="select.emit(record.propertyID)"
+>
+  <span>{{ record.name }}</span>
+</a>
