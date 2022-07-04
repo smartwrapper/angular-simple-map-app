@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StoreModule } from '@ngrx/store';
+
 import { ContentComponent } from './content.component';
+import { apartmentReducer } from '../../state/apartment.reducer';
 
 
 @NgModule({
@@ -8,7 +11,8 @@ import { ContentComponent } from './content.component';
     ContentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    StoreModule.forRoot({ apartment: apartmentReducer }),
   ],
   exports: [
     ContentComponent,

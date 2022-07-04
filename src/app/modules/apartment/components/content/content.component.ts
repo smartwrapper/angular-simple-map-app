@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, 
   AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Map, NavigationControl, Marker, LngLatBoundsLike } from 'maplibre-gl';
 import { MapService } from '../../services/map.service';
+import { replaceLocation } from '../../state/apartment.action';
 
 @Component({
   selector: 'app-content',
@@ -21,7 +23,11 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('map')
   private mapContainer!: ElementRef<HTMLElement>;
 
-  constructor(private router: Router, private mapService: MapService) { }
+  constructor(
+    private router: Router,
+    private mapService: MapService,
+    private store: Store,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -59,16 +65,12 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       if (!this.isOneMarkerOnly) return;
       
-      console.log('xxx - ', e.lngLat);
-      // remove previous markers
-      this.markers.forEach(marker => marker.remove());
-
-      let srcImagePath = './assets/images/map-circle-blue.svg';
-      this.addNewMarker({
+      let idGeocode = {
         id: this.selectedIdGeocode.id,
         latitude: e.lngLat.lat,
         longitude: e.lngLat.lng
-      }, srcImagePath);
+      };
+      this.store.dispatch(replaceLocation(idGeocode));
     });
   }
 
