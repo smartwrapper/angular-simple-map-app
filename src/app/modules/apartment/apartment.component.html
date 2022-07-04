@@ -3,4 +3,6 @@
   [selectedId]="selectedRecordId"
   (select)="onSelect($event)"
 ></app-sidebar>
-<app-content></app-content>
+<app-content
+  (select)="onSelect($event)"
+></app-content>

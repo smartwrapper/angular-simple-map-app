@@ -25,6 +25,10 @@ export class SidebarComponent implements OnInit {
   }
 
   onSelect(recordId: number) {
+    if (!this.collapsed) {
+      this.toggleCollapsed();
+    }
+    
     this.select.emit(recordId);
   }
 }

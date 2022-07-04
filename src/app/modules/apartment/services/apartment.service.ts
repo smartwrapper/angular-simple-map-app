@@ -27,4 +27,14 @@ export class ApartmentService {
       return of(result as T);
     };
   }
+
+  getIdGeocodes(apartment: Apartment) {
+    return apartment.records.map(record => {
+      return {
+        id: record.propertyID,
+        latitude: Number(record.geocode.Latitude),
+        longitude: Number(record.geocode.Longitude)
+      };
+    });
+  }
 }
