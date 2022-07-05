@@ -12,9 +12,10 @@
         >
           <span>{{ (apartment && apartment.agentInfo) | fullnamecompany }}</span>
         </a>
-        <div class="scroll-content">
+        <div #scrolltarget class="scroll-content">
           <div *ngFor="let record of (apartment && apartment.records)">
             <app-sidebar-detail
+              id="{{record.propertyID}}"
               [record]="record"
               [selectedId]="selectedId"
               (select)="onSelect($event)"

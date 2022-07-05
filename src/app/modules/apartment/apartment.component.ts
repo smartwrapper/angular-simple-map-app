@@ -1,12 +1,13 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { selectApartment } from './state/apartment.selector';
 import { retrievedApartment } from './state/apartment.action';
 import { ApartmentService } from './services/apartment.service';
 import { ContentComponent } from './components/content/content.component';
-import { Subscription } from 'rxjs';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-apartment',
@@ -14,7 +15,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./apartment.component.scss']
 })
 export class ApartmentComponent implements OnInit, OnDestroy {
-  @ViewChild(ContentComponent) child! : ContentComponent;
+  @ViewChild(SidebarComponent) childSidebar! : SidebarComponent;
+  @ViewChild(ContentComponent) childContent! : ContentComponent;
 
   subscription: Subscription = new Subscription();
   apartment$ = this.store.select(selectApartment);
@@ -48,7 +50,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onSelect(recordId: number) {
+  onSelect(recordId: number, fromSidebar = true) {
     this.selectedRecordId = recordId;
 
     this.apartment$.subscribe((apartment) => {
@@ -58,13 +60,17 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       }
       this.addNewMarkers(idGeocodes);
     });
+
+    if (!fromSidebar) {
+      this.childSidebar.scrollTo(recordId);
+    }
   }
 
   showMap(geocodes: Array<any>) {
-    this.child.showMap(geocodes);
+    this.childContent.showMap(geocodes);
   }
 
   addNewMarkers(geocodes: Array<any>) {
-    this.child.addNewMarkers(geocodes);
+    this.childContent.addNewMarkers(geocodes);
   }
 }

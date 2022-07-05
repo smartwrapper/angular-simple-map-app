@@ -133,5 +133,4 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
     marker.setLngLat([idGeocode.longitude, idGeocode.latitude]).addTo(this.map);
     this.markers.push(marker);
   }
-
 }

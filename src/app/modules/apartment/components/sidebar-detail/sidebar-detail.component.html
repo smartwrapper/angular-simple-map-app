@@ -4,5 +4,16 @@
   [ngClass]="{select:record.propertyID === selectedId}"
   (click)="select.emit(record.propertyID)"
 >
-  <span>{{ record.name }}</span>
+  <p>{{ record.name }}</p>
+  <p>{{ record.streetAddress + ', ' + record.city }}</p>
+  <div *ngFor="let floorplan of record.floorplans">
+    <img src="{{'./assets/images/' + floorplan.bedrooms + '-bed.svg'}}" alt="bed-icon" style="width: 20px; height:20px;" />
+    <span>
+      {{floorplan.price | currency : 'USD' : 'symbol' : '1.0-0'}}+
+    </span>
+  </div>
+  <p>
+    {{record.highValueAmenities.length}} High value amenities
+  </p>
+  <img *ngIf="record.photo && record.photo.length !== 0" src="{{record.photo}}" alt="Photo" loading="lazy">
 </a>

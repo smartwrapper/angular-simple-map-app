@@ -19,9 +19,6 @@ export class SidebarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // setTimeout(() => {
-    //   console.log('xxx - ', this.apartment);
-    // }, 1000);
   }
 
   onSelect(recordId: number) {
@@ -30,5 +27,10 @@ export class SidebarComponent implements OnInit {
     }
     
     this.select.emit(recordId);
+  }
+
+  scrollTo(recordId: number) {
+    let el = document.getElementById(recordId.toString());
+    el && el.scrollIntoView({behavior: 'smooth'});
   }
 }
