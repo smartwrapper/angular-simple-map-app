@@ -1,7 +1,95 @@
 .list-group-item {
-  border: none;
+  color: #6b6868;
+  cursor: pointer;
+  width: auto;
+  min-height: 100px;
+  transition: box-shadow .4s ease-in-out;
+  background: #fff;
+  margin: 8px;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  box-shadow: 1px 1px 1px #e0e0e0;
 }
 
 .list-group-item.select {
   background-color: #ddd;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-container-item-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-size: 13px;
+  line-height: 23px;
+  padding: 10px 0;
+  margin-left: 15px;
+}
+
+.list-container-item-content-header {
+  color: #000;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.list-container-item-subheading {
+  color: #909090;
+  font-size: 13px;
+}
+
+.list-container-item-content-section {
+  padding-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+  display: inline;
+  line-height: 26px;
+}
+
+.floorplan-type {
+  display: inline;
+}
+
+.floorplan-rent {
+  margin-left: 3px;
+  margin-right: 15px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.utilities {
+  margin-left: 1px;
+  font-size: 13px;
+  color: #9e9e9e;
+}
+
+.list-container-item-image {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-basis: 115px;
+  margin: 10px;
+}
+
+.property-preview-image {
+  display: inline-block;
+  max-width: 120px;
+  max-height: 120px;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
 }

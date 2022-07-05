@@ -1,19 +1,40 @@
 <a
   [routerLink]="[ '/apartment/', record.propertyID ]"
-  class="list-group-item list-group-item-action py-2 ripple"
+  class="list-group-item list-group-item-action"
   [ngClass]="{select:record.propertyID === selectedId}"
   (click)="select.emit(record.propertyID)"
 >
-  <p>{{ record.name }}</p>
-  <p>{{ record.streetAddress + ', ' + record.city }}</p>
-  <div *ngFor="let floorplan of record.floorplans">
-    <img src="{{'./assets/images/' + floorplan.bedrooms + '-bed.svg'}}" alt="bed-icon" style="width: 20px; height:20px;" />
-    <span>
-      {{floorplan.price | currency : 'USD' : 'symbol' : '1.0-0'}}+
-    </span>
+  <div class="list-container">
+    <div class="list-container-item-content">
+      <div class="list-container-item-content-header">
+        {{ record.name }}
+      </div>
+      <div class="list-container-item-subheading">
+        {{ record.streetAddress + ', ' + record.city }}
+      </div>
+      <div class="list-container-item-content-section">
+        <div class="nowrap" *ngFor="let floorplan of record.floorplans">
+          <div class="floorplan-type">
+            <img src="{{'./assets/images/' + floorplan.bedrooms + '-bed.svg'}}"
+              alt="bed-icon"
+              width="{{floorplan.bedrooms === 0 ? 4 : 16}}" />
+          </div>
+          <span class="floorplan-rent">
+            {{floorplan.price | currency : 'USD' : 'symbol' : '1.0-0'}}+
+          </span>
+        </div>
+      </div>
+      <div class="list-container-item-content-section utilities">
+        {{record.highValueAmenities.length}} High value amenities
+      </div>
+    </div>
+    <div class="list-container-item-image">
+      <img
+        *ngIf="record.photo && record.photo.length !== 0"
+        class="property-preview-image"
+        src="{{record.photo}}"
+        alt="Photo"
+        loading="lazy" />
+    </div>
   </div>
-  <p>
-    {{record.highValueAmenities.length}} High value amenities
-  </p>
-  <img *ngIf="record.photo && record.photo.length !== 0" src="{{record.photo}}" alt="Photo" loading="lazy">
 </a>
